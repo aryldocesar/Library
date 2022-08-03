@@ -13,12 +13,16 @@ Class Loan {
         $this->book_code = $book_code;
         $this->user_code = $user_code;
         $this->loan_date = date("Y-m-d");
-        $this->loan_date = date("Y-m-d", strtotime(date('Y-m-d'). ' + 3 days'));
+        $this->return_date = date("Y-m-d", strtotime(date('Y-m-d'). ' + 3 days'));
         $this->loan_books[$book_code] =  $this->loan_date;
     }
 
     public function getLoanBooks(){
         return $this->loan_books;
+    }
+
+    public function getReturnDate(){
+        return $this->return_date;
     }
 
     
