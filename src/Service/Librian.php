@@ -25,4 +25,15 @@ Class Librian {
         }
         return "failed return a book";
     }
+
+    public function consultABook(Loan $loan, Book $book){
+        $loan_books = $loan->getLoanBooks();
+        if(in_array($book->getCode(), array_keys($loan_books))){
+            return "the book is on loan";
+        }
+
+        return "the book is available";
+
+
+    }
 }
