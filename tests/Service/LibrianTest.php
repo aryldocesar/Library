@@ -13,17 +13,31 @@ class LibrianTest extends TestCase
         //Prepare
         $loan = new Loan();
         $librian = new Librian();
-        $aryldo = new User("Aryldo", "0001");
-        $cesar = new User("Cesar", "0002");
+        $user1 = new User("Aryldo", "0001");
+        $user2 = new User("Cesar", "0002");
         $book_one = new Book("Biblia", "B01");
-        $book_two = new Book("Clean Code", "B02");
 
         //Act
-        $first_loan = $librian->lendBook($loan, $aryldo, $book_one);
-        $second_loan = $librian->lendBook($loan, $cesar, $book_two);
+        $first_loan = $librian->lendBook($loan, $user1, $book_one);
+        $second_loan = $librian->lendBook($loan, $user2, $book_one);
         
         //Assert - Then
-        self::assertEquals("successfully lent", $second_loan);
+        self::assertEquals("failed lend", $second_loan);
+
+    }
+
+    public function testLendABook(){
+        //prepare
+        $loan = new Loan();
+        $librian = new Librian();
+
+        $user1 = new User('Aryldo', '0001');
+
+        $book = new Book('Clean Code', "B01");
+
+        $loan_book = $librian->lendBook($loan,$user1,$book);
+
+        self::assertEquals("successfully lent", $loan_book);
 
     }
 }
