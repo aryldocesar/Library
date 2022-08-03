@@ -37,7 +37,7 @@ Class Librian {
 
     public function consultReturnDateBook(Loan $loan, Book $book){
         if($this->consultABook($loan, $book->getCOde())){
-            return true;
+            return $loan->getReturnDate();
         }
 
         return false;

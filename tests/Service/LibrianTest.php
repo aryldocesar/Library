@@ -109,9 +109,9 @@ class LibrianTest extends TestCase
 
         $librian->lendBook($loan,$user1,$book);
         $return_book = $librian->consultReturnDateBook($loan, $book);
-        
+
         //Assert - Then
-        self::assertEquals(true, $return_book);
+        self::assertEquals($loan->getReturnDate(), $return_book);
 
     }
 
