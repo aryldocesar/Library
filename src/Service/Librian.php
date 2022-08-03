@@ -9,7 +9,7 @@ Class Librian {
 
     public function lendBook(Loan $loan,User $user, Book $book){
 
-        if(!in_array($book->getCode(), array_keys($loan->getLoanBooks()))){
+        if(!$this->consultABook($loan, $book->getCOde())){
             $loan->toLoanBooks($book->getCode(), $user->getCode());
             return "successfully lent";
         }
@@ -26,14 +26,20 @@ Class Librian {
         return "failed return a book";
     }
 
-    public function consultABook(Loan $loan, Book $book){
+    public function consultABook(Loan $loan, $book_code){
         $loan_books = $loan->getLoanBooks();
-        if(in_array($book->getCode(), array_keys($loan_books))){
-            return "the book is on loan";
+        if(in_array($book_code, array_keys($loan_books))){
+            return true;
         }
 
-        return "the book is available";
+        return false;
+    }
 
+    public function consultReturnDateBook(Loan $loan, Book $book){
+        if($this->consultABook($loan, $book->getCOde())){
+            return true;
+        }
 
+        return false;
     }
 }
