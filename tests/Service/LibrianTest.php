@@ -34,10 +34,29 @@ class LibrianTest extends TestCase
         $user1 = new User('Aryldo', '0001');
 
         $book = new Book('Clean Code', "B01");
-
+        //act
         $loan_book = $librian->lendBook($loan,$user1,$book);
 
+        //Assert - Then
         self::assertEquals("successfully lent", $loan_book);
+
+    }
+
+    public function testReturnALentBook(){
+        //prepare
+        $loan = new Loan();
+        $librian = new Librian();
+
+        $user1 = new User('Aryldo', '0001');
+
+        $book = new Book('Clean Code', "B01");
+
+        $loan_book = $librian->lendBook($loan,$user1,$book);
+        //act
+        $return_book = $librian->returnALentBook($book->getCode(), $loan);
+
+        //Assert - Then
+        self::assertEquals("returned book", $return_book);
 
     }
 }

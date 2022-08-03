@@ -17,4 +17,12 @@ Class Librian {
         return "failed lend";
     }
 
+    public function returnALentBook($book_code, Loan $loan){
+        $loan_books = $loan->getLoanBooks();
+        if(in_array($book_code, array_keys($loan_books ))){
+            unset($book_code, $loan_books);
+            return "returned book";
+        }
+        return "failed return a book";
+    }
 }
